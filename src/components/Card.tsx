@@ -1,12 +1,9 @@
 import React, { FC } from "react"
+import { CssStyles } from "../types/types"
 
 export enum CardVariant {
     outlined = "outlined",
     filled = "filled",
-}
-
-interface CssStyles {
-    [key: string]: string | undefined
 }
 
 interface CardProps {

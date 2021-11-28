@@ -1,3 +1,6 @@
+export interface CssStyles {
+    [key: string]: string | undefined
+}
 interface IAddress {
     street: string
     city: string

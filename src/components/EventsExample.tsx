@@ -1,19 +1,21 @@
-import React, { FC, useState } from "react"
+import React, { FC, useRef, useState } from "react"
+import { CssStyles } from "../types/types"
 
 const EventsExample: FC = () => {
     const [value, setValue] = useState<string>("")
     const [isDrag, setIsDrag] = useState<boolean>(false)
+    const inputRef = useRef<HTMLInputElement>(null)
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
     }
 
     const clickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-        console.log("Events Example value:", value)
+        console.log("Events Example value:", inputRef.current?.value)
     }
 
     const dragHandler = (event: React.DragEvent<HTMLDivElement>) => {
-        // console.log("DRAG !")
+        console.log("DRAG !")
     }
     const dropHandler = (event: React.DragEvent<HTMLDivElement>) => {
         console.log("Drooop")
@@ -32,10 +34,32 @@ const EventsExample: FC = () => {
         if (!isDrag) setIsDrag(true)
     }
 
+    const inputLabelStyle: CssStyles = {
+        display: "flex",
+        flexDirection: "column",
+        gap: "8px",
+        padding: "10px",
+        borderRadius: "6px",
+        boxShadow: "0px 2px 8px #00000020",
+        marginBottom: "12px",
+    }
+
     return (
         <div>
-            <input value={value} onChange={changeHandler} />
+            <label style={inputLabelStyle}>
+                <legend style={{ fontSize: "0.7em" }}>
+                    Неуправляемый input
+                </legend>
+                <input ref={inputRef} />
+            </label>
+
+            <label style={inputLabelStyle}>
+                <legend style={{ fontSize: "0.7em" }}>Управляемый input</legend>
+                <input value={value} onChange={changeHandler} />
+            </label>
+
             <button onClick={clickHandler}>click</button>
+
             <div
                 draggable
                 onDrag={dragHandler}
@@ -44,7 +68,8 @@ const EventsExample: FC = () => {
                     height: "100px",
                     background: "darkorange",
                 }}
-            ></div>
+            />
+
             <div
                 onDrop={dropHandler}
                 onDragLeave={dragLeaveHandler}
@@ -56,7 +81,7 @@ const EventsExample: FC = () => {
                     height: "100px",
                     marginTop: "20px",
                 }}
-            ></div>
+            />
         </div>
     )
 }
