@@ -1,4 +1,3 @@
-import { stringify } from "querystring"
 import React, { FC } from "react"
 
 export enum CardVariant {
