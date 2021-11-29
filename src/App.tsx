@@ -4,6 +4,7 @@ import { EventsExample } from "./components/EventsExample"
 import { Routes, Route, Link } from "react-router-dom"
 import { UserPage } from "./pages/UserPage"
 import { TodosPage } from "./pages/TodosPage"
+import { UserDetailPage } from "./pages/UserDetailPage"
 
 function App() {
     return (
@@ -24,6 +25,8 @@ function App() {
                 <Route index element={<UserPage />} />
                 <Route path='todos' element={<TodosPage />} />
                 <Route path='users' element={<UserPage />} />
+                <Route path='users' element={<UserPage />} />
+                <Route path='users/:id' element={<UserDetailPage />} />
             </Routes>
         </div>
     )

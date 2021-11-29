@@ -1,4 +1,5 @@
 import React, { FC } from "react"
+import { useNavigate } from "react-router-dom"
 import { IUser } from "../types/types"
 
 interface UserItemProps {
@@ -6,8 +7,15 @@ interface UserItemProps {
 }
 
 const UserItem: FC<UserItemProps> = ({ user }) => {
+    const navigation = useNavigate()
+
+    const onClick = () => {
+        navigation(`/users/${user.id}`)
+    }
+
     return (
         <div
+            onClick={onClick}
             style={{
                 padding: "10px",
                 borderRadius: "8px",
